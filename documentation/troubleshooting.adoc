@@ -52,6 +52,6 @@ NOTE: If this command is failing then it is possible that you will need a proxy 
 <<top>>
 
 == Open an Issue
-** Still stuck? Open an issue here with a detailed description of your problem: link:https://github.com/ramrexx/CloudForms_ServiceNow/issues[Open an issue]
+** Still stuck? Open an issue here with a detailed description of your problem: link:https://github.com/ramrexx/ServiceNow_Incident/issues[Open an issue]
 
 <<top>>
