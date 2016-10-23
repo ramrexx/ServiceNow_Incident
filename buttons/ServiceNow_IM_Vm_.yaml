@@ -1,0 +1,82 @@
+---
+:custom_buttons_sets:
+- name: ServiceNow_IM|Vm|
+  description: ServiceNow_Incident Management
+  set_type: CustomButtonSet
+  read_only: 
+  mode: 
+  custom_buttons:
+  - description: Create ServiceNow Incident
+    applies_to_class: Vm
+    applies_to_exp: 
+    options:
+      :button_image: 15
+      :display: true
+    userid: admin
+    wait_for_complete: 
+    name: Create Incident
+    visibility:
+      :roles:
+      - _ALL_
+    applies_to_id: 
+    resource_actions:
+      action: 
+      ae_namespace: SYSTEM
+      ae_class: PROCESS
+      ae_instance: Request
+      ae_message: 
+      ae_attributes:
+        request: servicenow_create_incident
+      dialog_label: servicenow_incident_dialog
+  - description: Resolve ServiceNow Incident
+    applies_to_class: Vm
+    applies_to_exp: 
+    options:
+      :button_image: 13
+      :display: true
+    userid: admin
+    wait_for_complete: 
+    name: Resolve Incident
+    visibility:
+      :roles:
+      - _ALL_
+    applies_to_id: 
+    resource_actions:
+      action: 
+      ae_namespace: SYSTEM
+      ae_class: PROCESS
+      ae_instance: Request
+      ae_message: 
+      ae_attributes:
+        request: servicenow_resolve_incident
+      dialog_label: servicenow_incident_dialog
+  - description: Close ServiceNow Incident
+    applies_to_class: Vm
+    applies_to_exp: 
+    options:
+      :button_image: 8
+      :display: true
+    userid: admin
+    wait_for_complete: 
+    name: Close Incident
+    visibility:
+      :roles:
+      - _ALL_
+    applies_to_id: 
+    resource_actions:
+      action: 
+      ae_namespace: SYSTEM
+      ae_class: PROCESS
+      ae_instance: Request
+      ae_message: 
+      ae_attributes:
+        request: ServiceNow_Close_Incident
+      dialog_label: servicenow_incident_dialog
+  set_data:
+    :button_order:
+    - Create Incident
+    - Resolve Incident
+    - Close Incident
+    :button_image: 8
+    :display: true
+    :group_index: 7
