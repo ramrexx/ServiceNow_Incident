@@ -131,17 +131,28 @@ begin
     log(:info, "Calling ServiceNow: incident information: #{body_hash.inspect}")
     servicenow_result = call_servicenow(:post, 'incident', body_hash)
 
+    @servicenow_incident_number = "ServiceNow Incident Number"
+    @servicenow_incident_state = "ServiceNow Incident State"
+    @servicenow_incident_sysid = "ServiceNow Incident ID"
+
     log(:info, "servicenow_result: #{servicenow_result.inspect}")
     log(:info, "number: #{servicenow_result['number']}")
     log(:info, "sys_id: #{servicenow_result['sys_id']}")
     log(:info, "state: #{servicenow_result['state']}")
 
-    log(:info, "Adding custom attribute {:servicenow_incident_number => #{servicenow_result['number']}}")
-    @object.custom_set(:servicenow_incident_number, servicenow_result['number'].to_s)
-    log(:info, "Adding custom attribute {:servicenow_incident_sysid => #{servicenow_result['sys_id']}}")
-    @object.custom_set(:servicenow_incident_sysid, servicenow_result['sys_id'].to_s)
-    log(:info, "Resetting custom attribute {:servicenow_incident_state => #{servicenow_result['state']}}")
-    @object.custom_set(:servicenow_incident_state, servicenow_result['state'].to_s)
+    log(:info, "Adding custom attribute {#{@servicenow_incident_number} => #{servicenow_result['number']}}")
+    @object.custom_set(@servicenow_incident_number, servicenow_result['number'].to_s)
+    log(:info, "Adding custom attribute {#{@servicenow_incident_sysid} => #{servicenow_result['sys_id']}}")
+    @object.custom_set(@servicenow_incident_sysid, servicenow_result['sys_id'].to_s)
+    log(:info, "Resetting custom attribute {#{@servicenow_incident_state} => #{servicenow_result['state']}}")
+
+    snow_state = case servicenow_result['state'].to_s
+        when "1" then "New"
+        when "6" then "Resolved"
+        else "Unknown"
+    end
+    @object.custom_set(@servicenow_incident_state, snow_state)
+          
   end
 
 rescue => err

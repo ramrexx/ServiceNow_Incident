@@ -60,11 +60,15 @@ begin
   else
     exit MIQ_OK
   end
+  
+  @snow_incident_number = "ServiceNow Incident Number"
+  @snow_incident_state = "ServiceNow Incident State"
+  @snow_incident_sysid = "ServiceNow Incident ID"
 
-  servicenow_incident_number = @object.custom_get(:servicenow_incident_number)
-  log(:info, "Found custom attribute {:servicenow_incident_number=>#{servicenow_incident_number}} from #{@object.name}") if servicenow_incident_number
-  servicenow_incident_sysid = @object.custom_get(:servicenow_incident_sysid)
-  log(:info, "Found custom attribute {:servicenow_incident_sysid=>#{servicenow_incident_sysid}} from #{@object.name}") if servicenow_incident_sysid
+  servicenow_incident_number = @object.custom_get(@snow_incident_number)
+  log(:info, "Found custom attribute {#{@snow_incident_number}=>#{servicenow_incident_number}} from #{@object.name}") if servicenow_incident_number
+  servicenow_incident_sysid = @object.custom_get(@snow_incident_sysid)
+  log(:info, "Found custom attribute {#{@snow_incident_sysid}=>#{servicenow_incident_sysid}} from #{@object.name}") if servicenow_incident_sysid
 
   raise "missing servicenow_incident_sysid" if servicenow_incident_sysid.nil?
 
@@ -103,12 +107,12 @@ begin
   log(:info, "sys_id: #{servicenow_result['sys_id']}")
   log(:info, "state: #{servicenow_result['state']}")
 
-  log(:info, "Setting custom attribute {:servicenow_incident_number => nil}")
-  @object.custom_set(:servicenow_incident_number, nil)
-  log(:info, "Setting custom attribute {:servicenow_incident_sysid => nil}")
-  @object.custom_set(:servicenow_incident_sysid, nil)
-  log(:info, "Setting custom attribute {:servicenow_incident_state => nil}")
-  @object.custom_set(:servicenow_incident_state, nil)
+  log(:info, "Setting custom attribute {#{@snow_incident_number} => nil}")
+  @object.custom_set(@snow_incident_number, nil)
+  log(:info, "Setting custom attribute {#{@snow_incident_sysid} => nil}")
+  @object.custom_set(@snow_incident_sysid, nil)
+  log(:info, "Setting custom attribute {#{@snow_incident_state} => nil}")
+  @object.custom_set(@snow_incident_state, nil)
 
 rescue => err
   log(:error, "[#{err}]\n#{err.backtrace.join("\n")}")
