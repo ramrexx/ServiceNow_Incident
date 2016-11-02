@@ -25,6 +25,7 @@ The purpose of this project is to provide a starting point for integrating Red H
 == Table of Contents
 
 * <<Overview>>
+*
 * <<Installation Steps>>
 ** <<Clone the Repo>>
 ** <<Import the Automate Domain>>
@@ -37,6 +38,16 @@ The purpose of this project is to provide a starting point for integrating Red H
 
 == Overview
 COMING SOON!
+
+=== How Incidents are Generated
+
+Icnidents can be generated from CloudForms in the following ways:
+
+* Custom button
+* Alert
+* Policy
+* Automate simulation
+* Provisioning
 
 == Installation Steps
 
