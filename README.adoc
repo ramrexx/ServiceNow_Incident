@@ -21,23 +21,21 @@
 
 The purpose of this project is to provide a starting point for integrating Red Hat (R) https://www.redhat.com/en/technologies/cloud-computing/cloudforms[Red Hat CloudForms] and ServiceNow's incident management.
 
-
 == Table of Contents
 
 * <<Overview>>
-*
-* <<Installation Steps>>
-** <<Clone the Repo>>
-** <<Import the Automate Domain>>
-** <<Import the Service Dialogs>>
-** <<Import the Custom Buttons>>
-** <<Update Automate StateMachine>>
+* <<Install Import/Export Scripts>>
+* <<Download the Repo>>
+* <<Import the Automate Domain>>
+* <<Import the Service Dialogs>>
+* <<Import the Custom Buttons>>
+* <<Update Automate StateMachine>>
 * link:documentation/userguide.adoc[User Guide]
 * link:documentation/troubleshooting.adoc[Troubleshooting Guide]
 * <<Contribute>>
 
-== Overview
-COMING SOON!
+=== Overview
+image:documentation/images/overview.png[link=documentation/images/overview.png]
 
 === How Incidents are Generated
 
@@ -49,26 +47,36 @@ Icnidents can be generated from CloudForms in the following ways:
 * Automate simulation
 * Provisioning
 
-== Installation Steps
+=== Install rhconsulting Scripts
 
-IMPORTANT: You MUST have the link:https://github.com/rhtconsulting/cfme-rhconsulting-scripts.git[Consulting Rake Scripts] installed on your CloudForms appliance first!
+Follow these steps to install the miqimport/miqexport utilities:
 
-=== Clone the Repo
+While in `/root` directory, download the rhconsulting repository
+
+ curl -sL  https://github.com/rhtconsulting/cfme-rhconsulting-scripts/tarball/master | tar xvz
+
+Change to the newly created `/root/rhtconsulting-cfme-rhconsulting-scripts` directory, install the rake scripts and utilities:
+
+ make install
+
+The `/usr/bin/miqimport` and `/usr/bin/miqexport` utilities are now available to assist you when importing and exporting from CloudForms.
+
+=== Download Repo
 
  cd /root
- git clone https://github.com/ramrexx/ServiceNow_Incident.git
+ curl -sL  https://github.com/ramrexx/ServiceNow_Incident/tarball/master | tar xvz
 
 === Import the Automate Domain
 
- /usr/bin/miqimport domain ServiceNow_Incident /root/ServiceNow_Incident/automate/
+ /usr/bin/miqimport domain ServiceNow_Incident /root/ramrexx-ServiceNow_Incident/automate/
 
 === Import the Service Dialogs
 
- /usr/bin/miqimport service_dialogs /root/ServiceNow_Incident/service_dialogs/servicenow_incident_dialog.yml
+ /usr/bin/miqimport service_dialogs /root/ramrexx-ServiceNow_Incident/service_dialogs/servicenow_incident_dialog.yml
 
 === Import the Custom Buttons
 
- /usr/bin/miqimport buttons /root/ServiceNow_Incident/buttons/ServiceNow_IM_Vm_.yaml
+ /usr/bin/miqimport buttons /root/ramrexx-ServiceNow_Incident/buttons/ServiceNow_IM_Vm_.yaml
 
 === Update Automate StateMachine
 
