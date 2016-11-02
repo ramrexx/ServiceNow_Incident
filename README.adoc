@@ -24,8 +24,9 @@ The purpose of this project is to provide a starting point for integrating Red H
 == Table of Contents
 
 * <<Overview>>
-* <<Install Import/Export Scripts>>
-* <<Download the Repo>>
+** <<How Incidents are Generated>>
+* <<Install rhconsulting Scripts>>
+* <<Download Repo>>
 * <<Import the Automate Domain>>
 * <<Import the Service Dialogs>>
 * <<Import the Custom Buttons>>
@@ -37,7 +38,7 @@ The purpose of this project is to provide a starting point for integrating Red H
 === Overview
 image:documentation/images/overview.png[link=documentation/images/overview.png]
 
-=== How Incidents are Generated
+==== How Incidents are Generated
 
 Icnidents can be generated from CloudForms in the following ways:
 
