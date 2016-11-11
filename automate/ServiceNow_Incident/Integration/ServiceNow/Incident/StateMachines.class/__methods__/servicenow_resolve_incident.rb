@@ -59,9 +59,13 @@ begin
   when 'vm', 'miq_provision'
     @task   = $evm.root['miq_provision']
     @object = @task.try(:destination) || $evm.root['vm']
-  else
-    exit MIQ_OK
+  when 'automation_task'
+    @task   = $evm.root['automation_task']
+    @object = $evm.vmdb(:vm).find_by_name($evm.root['vm_name']) ||
+      $evm.vmdb(:vm).find_by_id($evm.root['vm_id'])
   end
+
+  exit MIQ_STOP unless @object
 
   servicenow_incident_number = @object.custom_get(:servicenow_incident_number)
   log(:info, "Found custom attribute {:servicenow_incident_number=>#{servicenow_incident_number}} from #{@object.name}") if servicenow_incident_number
