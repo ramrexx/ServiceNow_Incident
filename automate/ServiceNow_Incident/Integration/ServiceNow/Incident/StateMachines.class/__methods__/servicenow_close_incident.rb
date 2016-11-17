@@ -42,6 +42,8 @@ def call_servicenow(action, tablename='incident', sysid=nil, body=nil)
   params[:payload] = body.to_json
   log(:info, "Calling url: #{url} action: #{action} payload: #{params}")
 
+  RestClient.proxy = $evm.object['proxy_url'] unless $evm.object['proxy_url'].nil?
+
   snow_response = RestClient::Request.new(params).execute
   log(:info, "response headers: #{snow_response.headers}")
   log(:info, "response code: #{snow_response.code}")
